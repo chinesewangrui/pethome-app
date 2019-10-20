@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goback()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-label>购物车</ion-label>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-label class="myAd">喜迎双十一,现在下单满500元立送50元优惠券,还有机会抽中神秘大礼呦!!</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>名称</ion-label>
+    <ion-label>&nbsp;&nbsp;&nbsp;&nbsp;单价</ion-label>
+    <ion-label>&nbsp;&nbsp;&nbsp;&nbsp;数量</ion-label>
+    <ion-label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小计</ion-label>
+    <ion-label>&nbsp;&nbsp;&nbsp;&nbsp;操作</ion-label>
+  </ion-item>
+  <ion-item *ngFor="let item of products;let i=index">
+    <ion-label>{{item.pname}}</ion-label>
+    <ion-label >{{item.price|currency:'￥'}}</ion-label>
+    <ion-buttons>
+      <ion-button (click)="doLess(i)" >
+          <ion-icon name="remove"></ion-icon>
+        </ion-button>
+        <ion-text class="myCount">{{item.count}}</ion-text>
+        <ion-button (click)="doAdd(i)" >
+          <ion-icon name="add" ></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-label class="myPrice">{{item.count*item.price|currency:'￥'}}</ion-label>
+    <ion-button (click)="doDel(item.id,i)">
+        <ion-icon name="trash"></ion-icon>
+    </ion-button>
+  </ion-item>
+  <ion-item>
+    <ion-buttons slot="end">
+      <ion-label>总价:</ion-label>
+      <ion-label class="myPrice">{{total|currency:'￥'}}</ion-label>
+    </ion-buttons>
+  </ion-item>
+  <ion-button (click)="doBuy()" expand="block">立刻购买</ion-button>
+  <ion-button (click)="goback()" expand="block">我再逛逛</ion-button>
+</ion-content>

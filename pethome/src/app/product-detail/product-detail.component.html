@@ -1,0 +1,62 @@
+<!-- 商品详情页页头 -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goback()">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-label>{{product.title}}</ion-label>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-label class="myAd">萌宠之家APP开放啦!现在注册就送宠物九折优惠券,还有神秘大礼包相送呦!</ion-label>
+  </ion-item>
+  <!-- 商品详情页面 -->
+  <ion-card>
+    <img [src]="url.host+product.lg" alt="">
+    <ion-card-header>
+      <ion-card-title>{{product.title}}</ion-card-title>
+      <ion-card-subtitle>{{product.subtitle}}</ion-card-subtitle>
+      <ion-label class="myPrice">{{product.price|currency:'￥'}}</ion-label>
+      <ion-buttons>
+        <ion-label>商品数量:</ion-label>
+        <ion-button (click)="doLess()" >
+          <ion-icon name="remove"></ion-icon>
+        </ion-button>
+        <ion-text class="myCount">{{count}}</ion-text>
+        <ion-button (click)="doAdd()" >
+          <ion-icon name="add" ></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button (click)="doBuy()" expand="block">
+        <ion-icon name="heart"></ion-icon>
+        <ion-label>立即购买</ion-label>
+      </ion-button>
+      <ion-button (click)="doAddCart()" expand="block">
+        <ion-label>加入购物车</ion-label>
+      </ion-button>
+      <ion-button (click)="doGoCart()" expand="block" >
+          <ion-icon name="cart"></ion-icon>
+          <ion-label>前往购物车</ion-label>
+      </ion-button>
+    <ion-item>
+      <ion-label>同类推荐:</ion-label>
+    </ion-item>  
+    <!-- 轮播图 -->
+    <ion-slides pager="true" #myCarousel>
+        <ion-slide *ngFor="let item of picList">
+          <img [src]="url.host+item.pic">
+        </ion-slide>
+      </ion-slides>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+
+
+
+

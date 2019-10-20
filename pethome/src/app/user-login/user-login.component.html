@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goback()">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-label>用户登录</ion-label>
+      <ion-buttons slot="end">
+        <ion-button [routerLink]="'/user-reg'">
+            <ion-icon name="contact" slot="start"></ion-icon>
+          <ion-label>新用户注册</ion-label>
+        </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-label position="floating">用户名:</ion-label>
+      <ion-input clearInput [(ngModel)]="uname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">密码:</ion-label>
+      <ion-input clearInput [(ngModel)]="upwd" type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input clearInput [(ngModel)]="testStr"></ion-input>
+      <ion-button *ngIf="canGet;else wait" (click)="getTest()" size="default">获取验证码</ion-button>
+      <ng-template #wait>
+        <ion-button disabled="true" size="default" color="light">{{n}}s后重新获取</ion-button>
+      </ng-template>
+    </ion-item>
+    <ion-item >
+      <ion-label>自动登录</ion-label>
+      <ion-checkbox slot="start" [(ngModel)]="entry.isChecked"></ion-checkbox>
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-label class="myForget">忘记密码?</ion-label>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-card>
+  <ion-button expand="block" (click)="doLogin()">登录</ion-button>
+  <ion-label padding>其他方式登录:</ion-label>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-buttons>
+          <ion-button>
+            <img src="../../assets/icon/weixin.png" alt="">
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col>
+        <ion-buttons>
+          <ion-button>
+            <img src="../../assets/icon/qq.png" alt="">
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col>
+        <ion-buttons>
+          <ion-button>
+            <img src="../../assets/icon/sina.png" alt="">
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

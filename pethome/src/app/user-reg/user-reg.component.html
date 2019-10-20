@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goback()">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-label>用户注册</ion-label>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-label position="floating">用户名:</ion-label>
+      <ion-input clearInput [(ngModel)]="uname" placeholder="请输入6-12位数字或字母" (ionBlur)="doCheckName()"></ion-input>
+    </ion-item>
+    <ion-label [ngSwitch]="isName" padding>
+        <ion-text *ngSwitchCase=0></ion-text>
+        <ion-text *ngSwitchCase=1 color="danger">用户名不能为空</ion-text>
+        <ion-text *ngSwitchCase=2 color="danger">用户名格式不正确</ion-text>
+        <ion-text *ngSwitchCase=3 color="danger">该用户名已被注册</ion-text>
+        <ion-text *ngSwitchDefault color="success">用户名可用</ion-text>
+      </ion-label>
+    <ion-item>
+      <ion-label position="floating">用户密码:</ion-label>
+      <ion-input clearInput [(ngModel)]="upwd" type="password" placeholder="请输入6~12位数字或字母" (ionBlur)="doCheckupwd()"></ion-input>
+    </ion-item>
+    <ion-label [ngSwitch]="isUpwd" padding>
+      <ion-text *ngSwitchCase=0></ion-text>
+      <ion-text *ngSwitchCase=1 color="danger">密码不能为空</ion-text>
+      <ion-text *ngSwitchCase=2 color="danger">密码格式不正确</ion-text>
+      <ion-text *ngSwitchDefault color="success">输入成功</ion-text>
+    </ion-label>
+    <!-- 密码确认 -->
+    <ion-item>
+      <ion-label position="floating">密码确认:</ion-label>
+      <ion-input clearInput [(ngModel)]="cpwd" type="password" (ionBlur)="doCheck()"></ion-input>
+    </ion-item>
+    <ion-label [ngSwitch]="isSame" padding>
+      <ion-text *ngSwitchCase=0></ion-text>
+      <ion-text *ngSwitchCase=1 color="success">两次密码输入一致</ion-text>
+      <ion-text *ngSwitchDefault color="danger">两次密码验证不一致,请重新输入</ion-text>
+    </ion-label>
+    <!-- 邮箱 -->
+    <ion-item>
+      <ion-label position="floating">邮箱:</ion-label>
+      <ion-input clearInput [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <!-- 电话 -->
+    <ion-item>
+      <ion-label position="floating">电话:</ion-label>
+      <ion-input clearInput [(ngModel)]="phone"></ion-input>
+    </ion-item>
+    <!-- 性别 -->
+    <ion-radio-group class="myGender">
+      <ion-label class="mySex">性别:</ion-label>
+      <ion-radio  color="tertiary" value="1" name="gender" checked #manChecked></ion-radio>
+      <ion-text class="myMail">男</ion-text>
+      <ion-radio color="danger" value="0" name="gender"></ion-radio>
+      <ion-text class="myFemail">女</ion-text>
+    </ion-radio-group> 
+  </ion-card>
+  <ion-button expand="block" (click)="doReg()">注册</ion-button>
+</ion-content>

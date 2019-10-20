@@ -1,0 +1,39 @@
+<!-- 商品列表页页头 -->
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="goback()">
+                <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-label>宠物市场</ion-label>
+    </ion-toolbar>
+</ion-header>
+<!-- 商品列表主体 -->
+<ion-content>
+    <ion-card>
+        <ion-item *ngFor="let item of cats" detail="true">
+            <!-- 左侧缩略图 -->
+            <ion-thumbnail slot="start">
+                <img [src]="url.host+item.md" alt="">
+            </ion-thumbnail>
+            <!-- 中间标题与价格 -->
+            <ion-label>
+                <ion-text  class="myTitle">{{item.title}}</ion-text>
+                <br>
+                <ion-text class="mySubtitle">{{item.subtitle}}</ion-text>
+                <br>
+                <ion-text class="myPrice">{{item.price|currency:"￥"}}</ion-text>
+            </ion-label>
+            <!-- 右侧按钮 -->
+            <ion-button slot="end" [routerLink]="'/cat-detail/'+item.aid">查看详情</ion-button>
+        </ion-item>
+    </ion-card>
+    <!-- 无限滚动 -->
+    <ion-infinite-scroll *ngIf="hasMore;else noMore" threshold="30px" (ionInfinite)="loadMore()" #MoreCats> 
+        <ion-infinite-scroll-content loadingText="加载中,请稍候..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <ng-template #noMore>
+        <ion-button expand="block" disabled="true" color="light">更多萌宠正在寄售,敬请期待</ion-button>
+    </ng-template>
+</ion-content>

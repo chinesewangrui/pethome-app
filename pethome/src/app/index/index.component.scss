@@ -1,0 +1,37 @@
+ion-row,ion-col,ion-card-header,ion-card-content{
+    padding:5px !important;
+    text-align:center
+}
+// 搜索框
+.mySearch{
+    margin-top:5px
+}
+a{
+    text-decoration: none;
+    color: #faa7da;
+}
+// 标题
+.myTitle{
+    color:#faa7da;
+}
+//商品名
+.myName{
+    font-size:18px;
+    text-align: center;
+}
+//建议价格
+.myJy{
+    text-align: center;
+    color:#aaa
+}
+//价格
+.myPrice{
+    color:#fa22a1;
+    font-size:14px;
+    text-align:center
+}
+.detailsPrice{
+    color:#fa22a1;
+    font-size:18px;
+    text-align:center
+}

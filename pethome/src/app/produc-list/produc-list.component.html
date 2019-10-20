@@ -1,0 +1,100 @@
+<!-- 商品列表页页头 -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goback()">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-label >宠物用品超市</ion-label>
+    <ion-buttons slot="end">
+      <ion-button (click)="goCart()">
+        <ion-icon name="cart" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<!-- 商品列表页主体 -->
+<ion-content>
+  <!-- 商品分类列表 -->
+  <!-- -- 0 猫罐头 1 猫粮 2 猫砂 3 猫砂盆 4猫玩具 5 服饰  6 牵引绳 -->
+  <!-- 后续添加点击跳转操作 -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4">
+        <img src="../../assets/icon/宠物罐头.png" alt="">
+        <br>
+        <ion-label class="myFl">猫罐头</ion-label>
+      </ion-col>
+      <ion-col size="4">
+        <img src="../../assets/icon/猫粮.png" alt="">
+        <br>
+        <ion-label>猫粮</ion-label>
+      </ion-col>
+      <ion-col size="4">
+        <img src="../../assets/icon/猫砂.png" alt="">
+        <br>
+        <ion-label>猫砂</ion-label>
+      </ion-col>
+      <ion-col size="4">
+        <img src="../../assets/icon/猫砂盆.png" alt="">
+        <br>
+        <ion-label>猫砂盆</ion-label>
+      </ion-col>
+      <ion-col size="4">
+        <img src="../../assets/icon/猫玩具.png" alt="">
+        <br>
+        <ion-label>玩具</ion-label>
+      </ion-col>
+      <ion-col size="4">
+        <img src="../../assets/icon/宠物服饰.png" alt="">
+        <br>
+        <ion-label>服装</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- 商品列表主体内容 -->
+  <ion-card>
+    <ion-item *ngFor="let item of productList" detail="true">
+      <!-- 左侧缩略图 -->
+      <ion-thumbnail slot="start">
+        <img [src]="url.host+item.md">
+      </ion-thumbnail>
+      <!-- 中间标题和价格 -->
+      <ion-label>
+        <ion-text class="myTitle">{{item.title}}</ion-text> 
+        <br>
+        <ion-text class="mySubtitle">{{item.subtitle}}</ion-text>
+        <br>
+        <ion-text class="myPrice">{{item.price|currency:"￥"}}</ion-text>
+      </ion-label>
+      <!-- 右侧按钮 -->
+      <ion-button slot="end" [routerLink]="'/product-detail/'+item.pid">查看详情</ion-button>
+    </ion-item>
+  </ion-card>
+  <!-- 无限滚动 -->
+  <ion-infinite-scroll *ngIf="hasMore;else noMore" threshold="30px" (ionInfinite)="loadMore()" #myScroll>
+    <ion-infinite-scroll-content loadingText="加载中,请稍候..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <ng-template #noMore>
+    <ion-button expand="block" disabled="true" color="light">更多商品准备上架,敬请期待!!</ion-button>
+  </ng-template>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

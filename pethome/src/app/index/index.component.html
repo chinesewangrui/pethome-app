@@ -1,0 +1,85 @@
+<!-- 首页页头 -->
+<ion-header>
+  <ion-toolbar>
+    <img src="../../assets/icon/bb.png" slot="start" alt="萌宠之家">
+    <!-- 搜索框,需添加搜索功能 -->
+    <ion-searchbar class="mySearch"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<!-- 首页主体内容 -->
+<ion-content>
+  <!-- 轮播广告 -->
+  <ion-slides pager="true" #myCarousel>
+    <ion-slide *ngFor="let item of banners">
+      <img [src]="url.host+item.pic" alt="" class="myBanner" >
+    </ion-slide>
+  </ion-slides>
+  <!-- 热门宠物 -->
+  <ion-item>
+    <img src="../../assets/icon/cat.png" slot="start" alt="">
+    <ion-label class="myTitle">精致猫咪</ion-label>
+    <a slot="end" [routerLink]="'/cats-list'">查看更多</a>
+  </ion-item>
+  <!-- 图片区域 -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let item of cats">
+        <ion-card>
+          <img [src]="url.host+item.pic">
+          <ion-card-header >
+            <ion-card-title>
+              <ion-item>
+                <ion-label class="myName">{{item.cname}}</ion-label>
+              </ion-item>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-label class="myJy">建议价格:</ion-label><br/>
+            <ion-label class="myPrice">{{item.min|currency:"￥"}}-{{item.max|currency:"￥"}}</ion-label>
+            <ion-button [routerLink]="'/cat-detail/'+item.aid">查看详情</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- 热门宠物用品 -->
+  <ion-item>
+      <img src="../../assets/icon/cat.png" slot="start" alt="">
+      <ion-label class="myTitle">猫咪乐园</ion-label>
+      <a [routerLink]="'/product-list'">查看更多</a>
+    </ion-item>
+    <!-- 图片区域 -->
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let item of products">
+          <ion-card>
+            <img [src]="url.host+item.pic">
+            <ion-card-header>
+              <ion-card-title>
+                <ion-item>
+                  <ion-label class="myName">{{item.details}}</ion-label>
+                </ion-item>
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-label class="detailsPrice">{{item.price|currency:"￥"}}</ion-label>
+              <ion-button [routerLink]="'/product-detail/'+item.pid" color="danger">查看详情</ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+

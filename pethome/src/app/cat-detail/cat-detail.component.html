@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goback()">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-label>{{cat.title}}</ion-label>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-label class="myAd">每一只猫咪,都是独一无二的小精灵,请您务必珍重您未来的小可爱!</ion-label>
+  </ion-item>
+  <!-- 轮播图 -->
+  <ion-slides pager="true" #myCats>
+    <ion-slide *ngFor="let item of pics">
+      <img [src]="url.host+item.md" alt="">
+    </ion-slide>
+  </ion-slides>
+  <!-- 商品详情 -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{cat.title}}</ion-card-title>
+      <ion-card-subtitle>{{cat.details}}</ion-card-subtitle>
+      <ion-label class="myPrice">{{cat.price|currency:'￥'}}</ion-label>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label>{{cat.subtitle}}</ion-label>
+      
+      <ion-item>
+        <ion-label>猫龄：{{cat.age}}天</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>昵称:{{cat.aname}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>原主:{{cat.oldmaster}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>寄售时间:{{cat.saletime|date:'yyyy-MM-dd'}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>联系电话:{{cat.phone}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>原主寄语:{{cat.says}}</ion-label>
+      </ion-item>
+      <ion-button (click)="doBuy()" expand="block">立刻购买</ion-button>
+      <ion-button (click)="goback()" expand="block">我再逛逛</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
